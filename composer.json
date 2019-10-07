@@ -2,7 +2,7 @@
     "name": "jollygene/line-bot-sdk-wrapper",
     "description": "LINE Bot SDK Wrapper.",
     "type": "library",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "license": "MIT",
     "authors": [
         {
