@@ -1,0 +1,22 @@
+{
+    "name": "jollygene/line-bot-sdk-wrapper",
+    "description": "LINE Bot SDK Wrapper.",
+    "type": "library",
+    "version": "0.1.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kgnishimoto",
+            "email": "kgnishimoto@jollygene.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JollyGene\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/validation": ">=5.5",
+        "linecorp/line-bot-sdk": "^3.14"
+    }
+}
