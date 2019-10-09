@@ -325,7 +325,6 @@ class LINEBotMessageCreator
             default:
                 break;
         }
-        \Log::info(print_r($contents, true));
 
         return new MessageBuilder\FlexMessageBuilder($props['altText'], $contents);
     }
