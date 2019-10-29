@@ -136,6 +136,21 @@ class LINEBotMessageCreator
     }
 
     /**
+     * Join messages
+     *
+     * @param array $messages
+     * @return MultiMessageBuilder
+     */
+    public function joinMassages($messages)
+    {
+        $multiMessage = new MessageBuilder\MultiMessageBuilder();
+        foreach ($messages as $message) {
+            $multiMessage->add($message);
+        }
+        return $multiMessage;
+    }
+
+    /**
      * Create text message.
      *
      * @param array $props
