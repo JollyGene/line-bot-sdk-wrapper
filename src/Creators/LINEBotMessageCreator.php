@@ -48,6 +48,66 @@ class LINEBotMessageCreator
     }
 
     /**
+     * Create message from array config.
+     *
+     * @param array $config
+     * @return MessageBuilder
+     */
+    public function createMessage($props)
+    {
+        $this->util->validate($props, [
+            'type' => 'required',
+        ]);
+
+        $message = null;
+        switch ($props['type']) {
+            case 'text':
+                $message = $this->createTextMessage($props);
+                break;
+            case 'sticker':
+                $message = $this->createStickerMessage($props);
+                break;
+            case 'image':
+                $message = $this->createImageMessage($props);
+                break;
+            case 'video':
+                $message = $this->createVideoMessage($props);
+                break;
+            case 'audio':
+                $message = $this->createAudioMessage($props);
+                break;
+            case 'location':
+                $message = $this->createLocationMessage($props);
+                break;
+            case 'imagemap':
+                $message = $this->createImagemapMessage($props);
+                break;
+            case 'template':
+                $message = $this->createTemplateMessage($props);
+                break;
+            case 'flex':
+                $message = $this->createFlexMessage($props);
+                break;
+            default:
+                throw new \Exception('Invalid message type.');
+                break;
+        }
+        return $message;
+    }
+
+    /**
+     * Create message from json config.
+     *
+     * @param string $json
+     * @return MessageBuilder
+     */
+    public function createMessageFromJson($json)
+    {
+        $props = json_decode($json, true);
+        return $this->createMessage($props);
+    }
+
+    /**
      * Create multimessages from array config.
      *
      * @param array $config
@@ -58,43 +118,21 @@ class LINEBotMessageCreator
         $multiMessage = new MessageBuilder\MultiMessageBuilder();
 
         foreach ($config as $props) {
-            $this->util->validate($props, [
-                'type' => 'required',
-            ]);
-            switch ($props['type']) {
-                case 'text':
-                    $multiMessage->add($this->createTextMessage($props));
-                    break;
-                case 'sticker':
-                    $multiMessage->add($this->createStickerMessage($props));
-                    break;
-                case 'image':
-                    $multiMessage->add($this->createImageMessage($props));
-                    break;
-                case 'video':
-                    $multiMessage->add($this->createVideoMessage($props));
-                    break;
-                case 'audio':
-                    $multiMessage->add($this->createAudioMessage($props));
-                    break;
-                case 'location':
-                    $multiMessage->add($this->createLocationMessage($props));
-                    break;
-                case 'imagemap':
-                    $multiMessage->add($this->createImagemapMessage($props));
-                    break;
-                case 'template':
-                    $multiMessage->add($this->createTemplateMessage($props));
-                    break;
-                case 'flex':
-                    $multiMessage->add($this->createFlexMessage($props));
-                    break;
-                default:
-                    throw new \Exception('Invalid message type.');
-                    break;
-            }
+            $multiMessage->add($this->createMessage($props));
         }
         return $multiMessage;
+    }
+
+    /**
+     * Create multimessages from json config.
+     *
+     * @param string $json
+     * @return MultiMessageBuilder
+     */
+    public function createMessagesFromJson($json)
+    {
+        $props = json_decode($json, true);
+        return $this->createMessages($props);
     }
 
     /**
