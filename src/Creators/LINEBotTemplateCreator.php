@@ -104,7 +104,6 @@ class LINEBotTemplateCreator
         $imageAspectRatio = 'rectangle';
         $imageSize = 'cover';
         $this->util->validate($props, [
-            'text' => 'required|max:240',
             'columns' => 'required|array|max:10',
             'imageAspectRatio' => Rule::in(['rectangle', 'square']),
             'imageSize' => Rule::in(['cover', 'contain']),

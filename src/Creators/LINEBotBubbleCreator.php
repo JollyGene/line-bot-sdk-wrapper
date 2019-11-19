@@ -127,7 +127,7 @@ class LINEBotBubbleCreator
         $separatorColor = NULL;
         $this->util->validate($props, [
             'backgroundColor' => 'string',
-            'separator' => 'string',
+            'separator' => 'boolean',
             'separatorColor' => 'string',
         ]);
         if (isset($props['backgroundColor'])) {
