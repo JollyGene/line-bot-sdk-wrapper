@@ -18,6 +18,6 @@
     "require": {
         "illuminate/validation": ">=5.3",
         "illuminate/support": ">=5.3",
-        "linecorp/line-bot-sdk": "^3.14"
+        "linecorp/line-bot-sdk": ">=3.14"
     }
 }
